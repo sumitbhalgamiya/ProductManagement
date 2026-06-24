@@ -1,0 +1,166 @@
+﻿@model ProductManagement.Models.Products
+
+@{
+    ViewData["Title"] = "Edit Product";
+}
+
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<style>
+
+    body {
+        background: #fffdf5;
+    }
+
+    /* ================= HEADER ================= */
+
+    .page-header {
+        background: linear-gradient(135deg, #facc15, #fde68a);
+        color: #78350f;
+        padding: 30px;
+        border-radius: 18px;
+        margin-bottom: 25px;
+        box-shadow: 0 10px 25px rgba(250,204,21,0.25);
+    }
+
+        .page-header h2 {
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .page-header p {
+            margin: 5px 0 0;
+            opacity: 0.9;
+        }
+
+    /* ================= FORM CARD ================= */
+
+    .form-card {
+        background: white;
+        border-radius: 18px;
+        padding: 30px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+        border: 1px solid #f3f4f6;
+    }
+
+    /* ================= INPUTS ================= */
+
+    .form-control {
+        border-radius: 12px;
+        padding: 12px;
+        border: 1px solid #e5e7eb;
+        transition: 0.3s;
+    }
+
+        .form-control:focus {
+            border-color: #facc15;
+            box-shadow: 0 0 0 0.2rem rgba(250,204,21,0.25);
+        }
+
+    label {
+        font-weight: 600;
+        margin-bottom: 6px;
+        color: #374151;
+    }
+
+    /* ================= BUTTON ================= */
+
+    .btn-save {
+        background: linear-gradient(135deg, #facc15, #fde68a);
+        color: #78350f;
+        padding: 12px;
+        border-radius: 12px;
+        font-weight: 700;
+        width: 100%;
+        border: none;
+        transition: 0.3s;
+    }
+
+        .btn-save:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(250,204,21,0.25);
+        }
+
+    /* ================= BACK LINK ================= */
+
+    .back-link {
+        display: inline-block;
+        margin-top: 15px;
+        color: #b45309;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+</style>
+
+<!-- ================= HEADER ================= -->
+
+<div class="page-header">
+
+    <h2>
+        <i class="bi bi-pencil-square"></i>
+        Edit Product
+    </h2>
+
+    <p>Update product information</p>
+
+</div>
+
+<!-- ================= FORM ================= -->
+
+<div class="row justify-content-center">
+
+    <div class="col-md-5">
+
+        <div class="form-card">
+
+            <form asp-action="Edit">
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <!-- ID -->
+                <input type="hidden" asp-for="Id" />
+
+                <!-- NAME -->
+                <div class="mb-3">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <!-- PRICE -->
+                <div class="mb-3">
+                    <label asp-for="Price"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+
+                <!-- SAVE BUTTON -->
+                <button type="submit" class="btn-save">
+                    <i class="bi bi-check-circle-fill"></i>
+                    Save Changes
+                </button>
+
+            </form>
+
+            <!-- BACK -->
+            <a asp-action="Index" class="back-link">
+                ← Back to Product List
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,163 @@
+﻿@model ProductManagement.Models.Products
+
+@{
+    ViewData["Title"] = "Create Product";
+}
+
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<style>
+
+    body {
+        background: #f7f7f5;
+    }
+
+    /* ================= HEADER ================= */
+
+    .page-header {
+        background: linear-gradient(135deg, #f97316, #fb923c);
+        color: white;
+        padding: 30px;
+        border-radius: 18px;
+        margin-bottom: 25px;
+        box-shadow: 0 10px 25px rgba(249,115,22,0.2);
+    }
+
+        .page-header h2 {
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .page-header p {
+            margin: 5px 0 0;
+            opacity: 0.9;
+        }
+
+    /* ================= FORM CARD ================= */
+
+    .form-card {
+        background: white;
+        border-radius: 18px;
+        padding: 30px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+        border: 1px solid #f1f1f1;
+    }
+
+    /* ================= INPUT FIELDS ================= */
+
+    .form-control {
+        border-radius: 12px;
+        padding: 12px;
+        border: 1px solid #e5e7eb;
+        transition: 0.3s;
+    }
+
+        .form-control:focus {
+            border-color: #f97316;
+            box-shadow: 0 0 0 0.2rem rgba(249,115,22,0.15);
+        }
+
+    label {
+        font-weight: 600;
+        margin-bottom: 6px;
+        color: #374151;
+    }
+
+    /* ================= BUTTON ================= */
+
+    .btn-create {
+        background: linear-gradient(135deg, #f97316, #fb923c);
+        color: white;
+        padding: 12px;
+        border-radius: 12px;
+        font-weight: 600;
+        width: 100%;
+        border: none;
+        transition: 0.3s;
+    }
+
+        .btn-create:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(249,115,22,0.3);
+        }
+
+    /* ================= BACK LINK ================= */
+
+    .back-link {
+        display: inline-block;
+        margin-top: 15px;
+        color: #f97316;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+</style>
+
+<!-- ================= HEADER ================= -->
+
+<div class="page-header">
+
+    <h2>
+        <i class="bi bi-plus-circle-fill"></i>
+        Create Product
+    </h2>
+
+    <p>Add a new product to your inventory</p>
+
+</div>
+
+<!-- ================= FORM ================= -->
+
+<div class="row justify-content-center">
+
+    <div class="col-md-5">
+
+        <div class="form-card">
+
+            <form asp-action="Create">
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <!-- NAME -->
+                <div class="mb-3">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" class="form-control" placeholder="Enter product name" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <!-- PRICE -->
+                <div class="mb-3">
+                    <label asp-for="Price"></label>
+                    <input asp-for="Price" class="form-control" placeholder="Enter product price" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+
+                <!-- SUBMIT -->
+                <button type="submit" class="btn-create">
+                    <i class="bi bi-check-circle-fill"></i>
+                    Create Product
+                </button>
+
+            </form>
+
+            <!-- BACK -->
+            <a asp-action="Index" class="back-link">
+                ← Back to Product List
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
